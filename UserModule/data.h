@@ -5,12 +5,12 @@ using namespace std;
 
 class User {
 public:
-    enum class Role { ADMIN, MEMBER }; // enum은 public으로 빼는 게 좋음
+    enum class Role { ADMIN, MEMBER }; 
 
 protected:
     string username;
     string password;
-    string phoneNumber = ""; // 전화번호는 Member 클래스에서만 사용
+    string phoneNumber = ""; 
     Role role;
 
 public:

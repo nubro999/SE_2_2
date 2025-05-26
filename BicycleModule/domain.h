@@ -6,13 +6,14 @@
 using namespace std;
 
 // 자전거 등록
-inline void registerBicycle(vector<Bicycle>& bicycles, int id, const string& model) {
+inline void registerBicycle(vector<Bicycle>& bicycles, const string& id, const string& model) {
     bicycles.emplace_back(id, model);
 }
 
-inline optional<Bicycle*> rentBicycle(vector<Bicycle>& bicycles, int id, const string& userId) {
+// 자전거 대여
+inline optional<Bicycle*> rentBicycle(vector<Bicycle>& bicycles, const string& id, const string& userId) {
     for (auto& b : bicycles) {
-        if (b.getId() == id && !b.isRented()) {
+        if (b.getId() == id) {
             b.setRented(true);
             b.setRenterId(userId); // 대여자 ID 기록
             return &b;
@@ -21,7 +22,7 @@ inline optional<Bicycle*> rentBicycle(vector<Bicycle>& bicycles, int id, const s
     return nullopt;
 }
 
-
+// 자전거 대여 리스트 조회
 inline vector<Bicycle*> getUserRentedBicycles(vector<Bicycle>& bicycles, const string& userId) {
     vector<Bicycle*> result;
     for (auto& b : bicycles) {
